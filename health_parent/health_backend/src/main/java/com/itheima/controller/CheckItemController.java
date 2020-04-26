@@ -113,4 +113,9 @@ public class CheckItemController {
         }
     }
 
+
+    //git test
+    public void fun(){
+        System.out.println("git 测试");
+    }
 }
