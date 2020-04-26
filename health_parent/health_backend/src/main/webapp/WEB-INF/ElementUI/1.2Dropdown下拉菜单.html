@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入ElementUI样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入ElementUI组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <!--2:15-->
+    <!--<link rel="stylesheet" href="../resources/css/index.css">
+    <script src="../resources/js/vue.js"></script>
+    <script src="../resources/js/index.js"></script>-->
+</head>
+<body>
+<!--
+    trigger="click": 鼠标点击才显示, 不加鼠标移动到上面就显示
+    divied: 下划线
+-->
+    <div id="app">
+        <el-dropdown size="medium" split-button type="primary" trigger="click">
+            中等尺寸
+            <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>黄金糕</el-dropdown-item>
+                <el-dropdown-item divided>狮子头</el-dropdown-item>
+                <el-dropdown-item divided>螺蛳粉</el-dropdown-item>
+                <el-dropdown-item divided>双皮奶</el-dropdown-item>
+                <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
+            </el-dropdown-menu>
+        </el-dropdown>
+    </div>
+    <script>
+        new Vue({
+            el:"#app"
+        });
+    </script>
+</body>
+</html>

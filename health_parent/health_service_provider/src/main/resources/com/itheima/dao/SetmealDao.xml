@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.dao.SetmealDao">
+
+    <insert id="add" parameterType="com.itheima.pojo.Setmeal">
+        INSERT INTO t_setmeal(code,name,sex,age,price,remark,attention,img,helpCode,img)
+        VALUES
+        (#{code},#{name},#{sex},#{age},#{price},#{remark},#{attention},#{img},#{helpCode},#{img})
+    </insert>
+
+    <!--根据条件查询-->
+    <select id="selectByCondition" parameterType="String" resultType="com.itheima.pojo.Setmeal">
+        SELECT * FROM t_setmeal
+        <if test="value != null and value != '' and value.length > 0">
+            WHERE code = #{value} OR NAME = #{value} OR helpCode = #{value}
+        </if>
+    </select>
+
+    <!--设置套餐与 检查组的关联关系-->
+    <insert id="setCheckGroupAndCheckItem" parameterType="map">
+        INSERT INTO t_setmeal_checkgroup(setmeal_id,checkgroup_id)
+        VALUES
+        (#{setmealId},#{checkgroupId})
+    </insert>
+</mapper>
