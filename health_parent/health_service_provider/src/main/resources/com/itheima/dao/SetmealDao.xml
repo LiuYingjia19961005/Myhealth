@@ -4,9 +4,12 @@
 <mapper namespace="com.itheima.dao.SetmealDao">
 
     <insert id="add" parameterType="com.itheima.pojo.Setmeal">
-        INSERT INTO t_setmeal(code,name,sex,age,price,remark,attention,img,helpCode,img)
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO t_setmeal(code,name,sex,age,price,remark,attention,helpCode,img)
         VALUES
-        (#{code},#{name},#{sex},#{age},#{price},#{remark},#{attention},#{img},#{helpCode},#{img})
+        (#{code},#{name},#{sex},#{age},#{price},#{remark},#{attention},#{helpCode},#{img})
     </insert>
 
     <!--根据条件查询-->

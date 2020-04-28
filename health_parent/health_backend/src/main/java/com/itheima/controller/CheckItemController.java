@@ -112,10 +112,4 @@ public class CheckItemController {
             return new Result(false, MessageConstant.QUERY_CHECKITEM_FAIL);
         }
     }
-
-
-    //git test
-    public void fun(){
-        System.out.println("git 测试");
-    }
 }

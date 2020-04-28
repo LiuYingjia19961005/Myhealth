@@ -2,6 +2,7 @@ package com.itheima.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.itheima.constant.MessageConstant;
+import com.itheima.constant.RedisConstant;
 import com.itheima.entity.PageResult;
 import com.itheima.entity.QueryPageBean;
 import com.itheima.entity.Result;
@@ -9,8 +10,10 @@ import com.itheima.pojo.Setmeal;
 import com.itheima.service.SetmealService;
 import com.itheima.utils.QiniuUtils;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import redis.clients.jedis.JedisPool;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -18,6 +21,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/setmeal")
 public class SetmealController {
+
+    @Autowired
+    private JedisPool jedisPool;
 
     @Reference
     private SetmealService setmealService;
@@ -49,6 +55,7 @@ public class SetmealController {
         String fileName = UUID.randomUUID().toString() + substring;
         try {
             QiniuUtils.upload2Qiniu(imgFile.getBytes(),fileName);
+            jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_RESOURCES, fileName);
             return new Result(true,MessageConstant.PIC_UPLOAD_SUCCESS,fileName);
         } catch (IOException e) {
             e.printStackTrace();

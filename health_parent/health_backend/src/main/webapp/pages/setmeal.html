@@ -322,6 +322,7 @@
                     this.activeName='first';    //每次弹窗都显示基本信息
                     this.checkitemIds = []; //重置选中的检查项
                     this.checkgroupIds = [];
+                    this.formData = {};
                     this.imageUrl = null;
                 },
                 // 弹出添加窗口   开始
@@ -341,6 +342,9 @@
                 // 弹出添加窗口   结束
                 //切换页码
                 handleCurrentChange(currentPage) {
+                    //设置最新的页码 重新调用findPage方法进行分页查询
+                    this.pagination.currentPage = currentPage;
+                    this.findPage();
                 }
             }
         })
