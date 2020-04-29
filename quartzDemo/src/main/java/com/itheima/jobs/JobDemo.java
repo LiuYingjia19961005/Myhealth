@@ -1,4 +1,4 @@
-package com.itheim.jobs;
+package com.itheima.jobs;
 
 import java.util.Date;
 
