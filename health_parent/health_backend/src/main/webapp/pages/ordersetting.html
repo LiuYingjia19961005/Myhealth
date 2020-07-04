@@ -248,6 +248,15 @@
                         { date: 6, number: 120, reservations: 1 },
                         { date: 8, number: 120, reservations: 1 }
                     ];*/
+
+                    //fasongajax请求,根据当前页面对应的月份查询数据库,封装成相应结果赋值给leftobj模型数据,用于页面展示
+                    axios.post("/ordersetting/getOrderSettingByMonth.do?date=" + this.currentYear + "-" + this.currentMonth).then((res) =>{
+                        if (res.data.flag){
+                            this.leftobj = res.data.data;
+                        }else{
+                            this.$message.error(res.data.message);
+                        }
+                    });
                 },
 				//切换到当前月份
                 goCurrentMonth: function (year, month) {

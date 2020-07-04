@@ -15,10 +15,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author JackLiu
  * @Date 2020/4/28/15:07
+ *
+ * 1:40:44
  */
 @RestController
 @RequestMapping("ordersetting")
@@ -38,13 +41,25 @@ public class OrdersettingController {
                 OrderSetting orderSetting = new OrderSetting(new Date(orderDate), Integer.parseInt(number));
                 orderSettingList.add(orderSetting);
             }
-            System.out.println("===="+orderSettingList);
+            //System.out.println("===="+orderSettingList);
             //通过dubbo远程调用服务实现数据批量导入到数据库
             this.ordersettingService.add(orderSettingList);
             return new Result(true, MessageConstant.IMPORT_ORDERSETTING_SUCCESS);
         } catch (IOException e) {
             e.printStackTrace();
             return new Result(false, MessageConstant.IMPORT_ORDERSETTING_FAIL);
+        }
+    }
+
+    @RequestMapping("getOrderSettingByMonth")
+    public Result getOrderSettingByMonth(String date){  //date 格式必须为 yyyy-MM
+        try {
+            System.out.println("date========"+date);
+            List<Map> list = ordersettingService.getOrderSettingByMonth(date);
+            return new Result(true,MessageConstant.GET_ORDERSETTING_SUCCESS,list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,MessageConstant.GET_ORDERSETTING_FAIL);
         }
     }
 }

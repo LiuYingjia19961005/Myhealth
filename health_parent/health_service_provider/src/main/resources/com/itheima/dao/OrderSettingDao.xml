@@ -15,4 +15,9 @@
     <select id="findCountByOrderDate" parameterType="date" resultType="long">
         SELECT COUNT(id) FROM t_ordersetting WHERE orderDate = #{orderDate}
     </select>
+
+    <!--根据日期范围查询相应的数据-->
+    <select id="getOrderSettingByMonth" parameterType="map" resultType="com.itheima.pojo.OrderSetting">
+        SELECT * FROM t_ordersetting WHERE orderDate BETWEEN #{startTime} AND #{endTime}
+    </select>
 </mapper>

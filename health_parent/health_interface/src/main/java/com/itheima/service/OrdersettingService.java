@@ -3,6 +3,7 @@ package com.itheima.service;
 import com.itheima.pojo.OrderSetting;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author JackLiu
@@ -12,4 +13,6 @@ import java.util.List;
 public interface OrdersettingService {
 
     void add(List<OrderSetting> orderSettingList);
+
+    List<Map> getOrderSettingByMonth(String date);
 }
