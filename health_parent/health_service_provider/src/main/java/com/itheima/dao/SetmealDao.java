@@ -12,4 +12,8 @@ public interface SetmealDao {
     void add(Setmeal setmeal);
 
     void setCheckGroupAndCheckItem(Map<String, Integer> map);
+
+    List<Setmeal> findAll();
+
+    Setmeal findById(int id);
 }

@@ -53,6 +53,18 @@ public class SetmealServiceImpl implements SetmealService {
         jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_DB_RESOURCES, fileName);
     }
 
+    //查询所有的套餐
+    @Override
+    public List<Setmeal> findAll() {
+        return setmealDao.findAll();
+    }
+
+    //根据套餐ID查询套餐详情（套餐基本信息、套餐对应的检查组信息、检查组对应的检查项信息）
+    @Override
+    public Setmeal findById(int id) {
+        return setmealDao.findById(id);
+    }
+
     /**
      * 抽取重复代码
      */
