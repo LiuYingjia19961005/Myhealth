@@ -32,7 +32,9 @@ public class QiNiuTest {
         UploadManager uploadManager = new UploadManager(cfg);
 //...生成上传凭证，然后准备上传
 //如果是Windows情况下，格式是 D:\\qiniu\\test.png
-        String localFilePath = "F:\\2020java视频\\阶段4：医疗实战-传智健康-更新完结13天\\项目资料\\day04\\素材\\图片资源\\03a36073-a140-4942-9b9b-712cecb144901.jpg";
+        //String localFilePath = "F:\\2020java视频\\阶段4：医疗实战-传智健康-更新完结13天\\项目资料\\day04\\素材\\图片资源\\03a36073-a140-4942-9b9b-712cecb144901.jpg";
+        String localFilePath = "D:\\workspace\\itcast_health\\health_parent\\health_backend\\src\\main\\webapp\\img\\bg.jpg";
+
 //默认不指定key的情况下，以文件内容的hash值作为文件名
         String key = "";
         Auth auth = Auth.create(accessKey, secretKey);
@@ -85,7 +87,8 @@ public class QiNiuTest {
         String accessKeySecret = "LTUZQBpmkvarSUvJF7TqsiUIhN7Rc7";
         String bucketName = "qqqyyy";
 // <yourObjectName>上传文件到OSS时需要指定包含文件后缀在内的完整路径，例如abc/efg/123.jpg。
-        String objectName = "F:\\2020java视频\\阶段4：医疗实战-传智健康-更新完结13天\\项目资料\\day04\\素材\\图片资源\\1.jpg";
+        //String objectName = "F:\\2020java视频\\阶段4：医疗实战-传智健康-更新完结13天\\项目资料\\day04\\素材\\图片资源\\1.jpg";
+        String objectName = "D:\\workspace\\itcast_health\\health_parent\\health_backend\\src\\main\\webapp\\img\\bg.jpg";
 
 // 创建OSSClient实例。
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);

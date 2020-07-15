@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/setmeal")
 public class SetmealController {
     @Reference
-    private SetmealService setmealService;
+    private SetmealService SetmealServiceImpl;
 
     private SetmealService setmealService;
     //查询所有套餐
