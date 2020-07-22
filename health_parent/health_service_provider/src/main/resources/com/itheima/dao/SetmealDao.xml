@@ -56,8 +56,8 @@
     </select>
 
     <!--根据套餐ID查询套餐详情（套餐基本信息、套餐对应的检查组信息、检查组对应的检查项信息）-->
-    <select id="findById" parameterType="int" resultMap="">
-        SELECT * FROM t_setmeal WHEN id = #{id}
+    <select id="findById" parameterType="int" resultMap="findByIdResultMap">
+        SELECT * FROM t_setmeal WHERE id = #{id}
     </select>
 
     <!--设置套餐与 检查组的关联关系-->

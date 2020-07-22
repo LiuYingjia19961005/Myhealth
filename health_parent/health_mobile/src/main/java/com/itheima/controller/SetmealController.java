@@ -19,9 +19,8 @@ import java.util.List;
 @RequestMapping("/setmeal")
 public class SetmealController {
     @Reference
-    private SetmealService SetmealServiceImpl;
-
     private SetmealService setmealService;
+
     //查询所有套餐
     @RequestMapping("/getAllSetmeal")
     public Result getAllSetmeal(){
@@ -38,7 +37,9 @@ public class SetmealController {
     @RequestMapping("/findById")
     public Result findById(int id){
         try{
+            System.out.println("id================"+id);
             Setmeal setmeal = setmealService.findById(id);
+            System.out.println("setmeal========================"+setmeal);
             return new Result(true, MessageConstant.QUERY_SETMEAL_SUCCESS,setmeal);
         }catch (Exception e){
             e.printStackTrace();

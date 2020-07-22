@@ -51,7 +51,6 @@ public class OrdersettingServiceImpl implements OrdersettingService {
     public List<Map> getOrderSettingByMonth(String date) {
         String startTime = date + "-1"; //yyyy-MM-1
         String endTime = date + "-31";  //yyyy-MM-31
-        System.out.println(startTime + "====" + endTime);
         Map<String, String> map = new HashMap<>();
         map.put("startTime",startTime);
         map.put("endTime",endTime);
@@ -70,7 +69,6 @@ public class OrdersettingServiceImpl implements OrdersettingService {
                 result.add(stringMap);
             }
         }
-        System.out.println("result"+"===================="+result.size());
         return result;
     }
 }
