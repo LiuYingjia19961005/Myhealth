@@ -53,6 +53,7 @@ public class SetmealController {
         int index = originalFilename.lastIndexOf(".");  //得到最后一个 . 的下标
         String substring = originalFilename.substring(index);   //得到加上.的后缀名
         String fileName = UUID.randomUUID().toString() + substring;
+        System.out.println("uploadFileName===="+fileName);
         try {
             QiniuUtils.upload2Qiniu(imgFile.getBytes(),fileName);
             jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_RESOURCES, fileName);

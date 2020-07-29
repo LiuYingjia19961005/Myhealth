@@ -81,6 +81,19 @@ public class CheckGroup implements Serializable {
     }
 
     @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + code.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + helpCode.hashCode();
+        result = 31 * result + sex.hashCode();
+        result = 31 * result + remark.hashCode();
+        result = 31 * result + attention.hashCode();
+        result = 31 * result + checkItems.hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "CheckGroup{" +
                 "id=" + id +
