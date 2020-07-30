@@ -12,6 +12,7 @@ import com.itheima.service.SetmealService;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import redis.clients.jedis.JedisPool;
@@ -34,7 +35,8 @@ public class SetmealServiceImpl implements SetmealService {
     @Autowired
     private FreeMarkerConfigurer freeMarkerConfigurer;
 
-    private String outputpath;
+    @Value("${out_put_path}")
+    private String outputpath;  //从配置文件生成对应的配置文件
 
     @Override
     public PageResult findPage(QueryPageBean queryPageBean) {
@@ -61,6 +63,7 @@ public class SetmealServiceImpl implements SetmealService {
         //将图片名称保存到Redis中
         String fileName = setmeal.getImg();
         jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_DB_RESOURCES, fileName);
+        System.out.println("进入setmealServiceimpl====add");
 
         //当添加套餐后需要重新生成静态页面(套餐列表页面 套餐详情页面)
         generateMobileStaticHtml();

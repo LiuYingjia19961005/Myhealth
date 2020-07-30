@@ -1,3 +1,4 @@
+<#--套餐列表模板页面-->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -10,7 +11,7 @@ maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
     <meta name="author" content="">
     <link rel="icon" href="../img/asset-favico.ico">
     <title>预约</title>
-    <link rel="stylesheet" href="../css/page-health-order.css" />
+    <link rel="stylesheet" href="../css/page-health-order.css"/>
 </head>
 <body data-spy="scroll" data-target="#myNavbar" data-offset="150">
 <div class="app" id="app">
@@ -30,7 +31,7 @@ maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
                     <a class="link-page"
                        href="setmeal_detail_${setmeal.id}.html">
                         <img class="img-object f-left"
-                             src="http://puco9aur6.bkt.clouddn.com/${setmeal.img}"
+                             src="http://image.888808888.top/${setmeal.img}"
                              alt="">
                         <div class="item-body">
                             <h4 class="ellipsis item-title">${setmeal.name}
@@ -38,18 +39,17 @@ maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
                             <p class="ellipsis-more itemdesc">${setmeal.remark}</p>
                             <p class="item-keywords">
                                 <span>
-            <#else>
-                <#if setmeal.sex == '1'>
-                    男
-                <#else>
-                    女
-                </#if>
-            </span>
-                <span>${setmeal.age}</span>
-            </p>
-            </div>
-            </a>
-            </li>
+                                    <#if setmeal.sex == '1'>
+                                        男
+                                    <#else>
+                                        女
+                                    </#if>
+                                </span>
+                                <span>${setmeal.age}</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
             </#list>
             </ul>
         </div>

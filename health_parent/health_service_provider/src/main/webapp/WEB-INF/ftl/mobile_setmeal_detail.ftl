@@ -10,7 +10,7 @@ maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
     <meta name="author" content="">
     <link rel="icon" href="../img/asset-favico.ico">
     <title>预约详情</title>
-    <link rel="stylesheet" href="../css/page-health-orderDetail.css" />
+    <link rel="stylesheet" href="../css/page-health-orderDetail.css"/>
     <script src="../plugins/vue/vue.js"></script>
     <script src="../plugins/vue/axios-0.18.0.js"></script>
     <script src="../plugins/healthmobile.js"></script>
@@ -26,24 +26,24 @@ maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
     <div class="contentBox">
         <div class="card">
             <div class="project-img">
-                <img src="http://puco9aur6.bkt.clouddn.com/${setmeal.img}"
-                     width="100%" height="100%" />
+                <img src="http://image.888808888.top/${setmeal.img}"
+                     width="100%" height="100%"/>
             </div>
             <div class="project-text">
                 <h4 class="tit">${setmeal.name}</h4>
                 <p class="subtit">${setmeal.remark}</p>
                 <p class="keywords">
-<span>
-<#if setmeal.sex == '0'>
-    性别不限
-<#else>
-    <#if setmeal.sex == '1'>
-        男
-    <#else>
-        女
-    </#if>
-</#if>
-</span>
+                    <span>
+                    <#if setmeal.sex == '0'>
+                        性别不限
+                    <#else>
+                        <#if setmeal.sex == '1'>
+                            男
+                        <#else>
+                            女
+                        </#if>
+                    </#if>
+                    </span>
                     <span>${setmeal.age}</span>
                 </p>
             </div>
@@ -60,38 +60,39 @@ maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
                     <div class="tit-item flex3">项目内容</div>
                     <div class="tit-item flex3">项目解读</div>
                 </div>
-<div class="table-content">
-<ul class="table-list">
-<#list setmeal.checkGroups as checkgroup>
-    <li class="table-item">
-        <div class="item flex2">${checkgroup.name}</div>
-        <div class="item flex3">
-            <#list checkgroup.checkItems as checkitem>
-                <label>
-                ${checkitem.name}
-                </label>
-            </#list>
+                <div class="table-content">
+                    <ul class="table-list">
+                    <#list setmeal.checkGroups as checkgroup>
+                        <li class="table-item">
+                            <div class="item flex2">${checkgroup.name}</div>
+                            <div class="item flex3">
+                                <#list checkgroup.checkItems as checkitem>
+                                    <label>
+                                    ${checkitem.name}
+                                    </label>
+                                </#list>
+                            </div>
+                            <div class="item flex3">${checkgroup.remark}
+                            </div>
+                        </li>
+                    </#list>
+                    </ul>
+                    <div class="box-button">
+                        <a @click="toOrderInfo()" class="order-btn">立即预约</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="item flex3">${checkgroup.remark}
-        </div>
-    </li>
-    </#list>
-</ul>
-        <div class="box-button">
-            <a @click="toOrderInfo()" class="order-btn">立即预约</a>
-        </div>
+    </div>
 </div>
-</div>
-</div>
-</div>
-    <script>
-        var vue = new Vue({
-            el:'#app',
-            methods:{
-                toOrderInfo(){
-                    window.location.href = "orderInfo.html?id=${setmeal.id}";
-                }
+<script>
+    var vue = new Vue({
+        el: '#app',
+        methods: {
+            toOrderInfo() {
+                window.location.href = "orderInfo.html?id=${setmeal.id}";
             }
-        });
-    </script>
+        }
+    });
+</script>
 </body>

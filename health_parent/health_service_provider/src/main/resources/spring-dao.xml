@@ -34,14 +34,4 @@
         <!--指定接口所在的包-->
         <property name="basePackage" value="com.itheima.dao" />
     </bean>
-
-    <!--freemarkerConfig 静态化页面-->
-    <bean id="freemarkerConfig"
-          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-        <!--指定模板文件所在目录-->
-        <property name="templateLoaderPath" value="/WEB-INF/ftl/" />
-        <!--指定字符集-->
-        <property name="defaultEncoding" value="UTF-8" />
-    </bean>
-    <context:property-placeholder location="classpath:freemarker.properties"/>
 </beans>
