@@ -96,7 +96,6 @@
             axios.post("/setmeal/findById.do?id=" + id).then((response) => {
                 if(response.data.flag){
                     this.setmeal = response.data.data;
-                    console.log("==========================="+this.setmeal.img)
                     this.imgUrl = 'http://image.888808888.top/' + this.setmeal.img;
                 }
             });

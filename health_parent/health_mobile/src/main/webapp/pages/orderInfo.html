@@ -107,7 +107,9 @@
                     setmeal:{},//套餐信息
                     orderInfo:{
                         setmealId:id,
-                        sex:'1'
+                        sex:'1',
+                        telephone:"17673640879",
+                        idCard:"430524199709114073"
                     }//预约信息
                 },
                 methods:{
@@ -131,6 +133,20 @@
                     },
                     //提交预约
                     submitOrder(){
+                        //对用户输入的身份证号码进行校验
+                        if (!checkIdCard(this.orderInfo.idCard)){
+                            $.message.error("身份证输入错误,请重新输入!");
+                            return false;
+                        }
+                        //校验通过发送ajax请求
+                        axios.post("/order/submit.do",this.orderInfo).then((res)=>{
+                           if(res.data.data){
+                               //预约成功跳转到成功页面
+                               window.location.href = "orderSuccess.html?orderId=" + res.data.data;
+                           }else {
+                               $.message.error("身份证输入错误,请重新输入!");
+                           }
+                        });
                     }
                 },
                 mounted(){
