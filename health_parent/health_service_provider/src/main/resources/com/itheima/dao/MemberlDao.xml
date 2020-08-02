@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.dao.MemberDao">
+
+    <!--设置实体类与数据库表的对应关系-->
+    <resultMap id="baseResultMap" type="com.itheima.pojo.Member">
+        <id column="id" property="id"></id> <!--column:setmeal表的主键，property：实体类对应的的id属性-->
+        <result column="fileNumber" property="fileNumber"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="idCard" property="idCard"/>
+        <result column="phoneNumber" property="phoneNumber"/>
+        <result column="regTime" property="regTime"/>
+        <result column="password" property="password"/>
+        <result column="email" property="email"/>
+        <result column="birthday" property="birthday"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!--根据电话号码查询预约记录-->
+    <select id="findByTelephone" parameterType="string" resultType="com.itheima.pojo.Member">
+        SELECT * FROM t_member WHERE phoneNumber = #{telephone}
+    </select>
+
+    <!--用户第一次预约,自动注册会员-->
+    <insert id="add" parameterType="com.itheima.pojo.Member">
+        INSERT INTO t_member (name,sex,idCard,phoneNumber,regTime)
+          VALUES
+          (#{name},#{sex},#{idCard},#{phoneNumber},#{regTime})
+    </insert>
+
+    <select id="findAll" resultMap="baseResultMap">
+        SELECT * FROM t_member
+    </select>
+</mapper>

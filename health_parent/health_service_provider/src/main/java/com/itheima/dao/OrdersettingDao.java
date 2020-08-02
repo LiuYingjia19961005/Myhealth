@@ -14,7 +14,19 @@ import java.util.Map;
 
 public interface OrdersettingDao {
     void add(OrderSetting orderSetting);
+
     void editNumberByOrderDate(OrderSetting orderSetting);
+
     long findCountByOrderDate(Date orderDate);
+
     List<OrderSetting> getOrderSettingByMonth(Map map);
+
+    /**
+     * 查询指定日期对应点数据
+     * @param orderDate
+     * @return Result<OrderSetting>
+     */
+    OrderSetting findByOrderDate(String orderDate);
+
+    void updateReservations(OrderSetting orderSetting);
 }

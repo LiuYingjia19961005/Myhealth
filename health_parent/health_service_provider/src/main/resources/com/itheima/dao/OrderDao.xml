@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.dao.OrderDao">
+
+    <!--设置实体类与数据库表的对应关系-->
+    <resultMap id="baseResultMap" type="com.itheima.pojo.Order">
+        <id column="id" property="id"></id> <!--column:setmeal表的主键，property：实体类对应的的id属性-->
+        <result column="member_id" property="memberId"/>
+        <result column="orderDate" property="orderDate"/>
+        <result column="orderType" property="orderType"/>
+        <result column="orderStatus" property="orderStatus"/>
+        <result column="setmeal_id" property="setmealId"/>
+    </resultMap>
+
+    <!--根据套餐ID查询套餐详情（套餐基本信息、套餐对应的检查组信息、检查组对应的检查项信息）-->
+    <select id="findByCodition" parameterType="com.itheima.pojo.Order" resultMap="baseResultMap">
+        SELECT * FROM t_order
+        <where>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="orderDate != null">
+                AND orderDate = #{orderDate}
+            </if>
+            <if test="OrderType != OrderType">
+                AND id = #{id}
+            </if>
+            <if test="orderStatus != null">
+                AND orderStatus = #{orderStatus}
+            </if>
+            <if test="setmealId != null">
+                AND setmeal_id = #{setmealId}
+            </if>
+            <if test="memberId != null">
+                AND member_id = #{memberId}
+            </if>
+        </where>
+    </select>
+
+    <!--添加预约记录-->
+    <insert id="add" parameterType="com.itheima.pojo.Order">
+        INSERT INTO t_order (member_id, orderDate, orderType, orderStatus, setmeal_id)
+        VALUES
+        (#{memberId},#{orderDate},#{orderType},#{orderStatus},#{setmealId})
+    </insert>
+</mapper>

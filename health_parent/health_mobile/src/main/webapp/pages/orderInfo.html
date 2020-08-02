@@ -125,7 +125,7 @@
                         doLoop();
                         clock = window.setInterval(doLoop,1000);//通过调用doLoop方法实现30秒倒计时
                         //发送ajax请求,为用户发送手机验证码
-                        axios.post("validateCode/send40rder.do?telephone=" + telephone).then((res)=>{
+                        axios.post("/validateCode/send40rder.do?telephone=" + telephone).then((res)=>{
                            if(!res.data.flag){
                                this.$message.error(res.data.message);
                            }
@@ -135,7 +135,7 @@
                     submitOrder(){
                         //对用户输入的身份证号码进行校验
                         if (!checkIdCard(this.orderInfo.idCard)){
-                            $.message.error("身份证输入错误,请重新输入!");
+                            this.$message.error("身份证输入错误,请重新输入!");
                             return false;
                         }
                         //校验通过发送ajax请求
@@ -144,7 +144,7 @@
                                //预约成功跳转到成功页面
                                window.location.href = "orderSuccess.html?orderId=" + res.data.data;
                            }else {
-                               $.message.error("身份证输入错误,请重新输入!");
+                               this.$message.error(res.data.data);
                            }
                         });
                     }

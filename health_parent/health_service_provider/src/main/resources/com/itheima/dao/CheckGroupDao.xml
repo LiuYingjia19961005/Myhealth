@@ -21,6 +21,7 @@
                 column="id">
         </collection>
     </resultMap>
+
     <!--插入检查项数据 id要与dao中方法名一致,-->
     <insert id="add" parameterType="com.itheima.pojo.CheckGroup" >
         <!--order="AFTER": 增加完成后获取id,  keyProperty="id": 把查询出来的id值赋给实体类主键id-->
