@@ -41,8 +41,7 @@ public class OrderServerImpl implements OrderService {
 //      1.检查用户所选的日期查询是否已提交过预约
         String orderDate = (String) map.get("orderDate");
         OrderSetting orderSetting = ordersettingDao.findByOrderDate(orderDate);
-        System.out.println("OrderServerImpl====" + orderSetting);
-        String setmealId = null;
+        String setmealId = (String) map.get("setmealId");   //套餐id;
         if(orderSetting == null){
             //指定日期没有进行预约设置，无法完成体检预约
             return new Result(false, MessageConstant.SELECTED_DATE_CANNOT_ORDER);
@@ -51,20 +50,15 @@ public class OrderServerImpl implements OrderService {
         if(orderSetting.getReservations() >= orderSetting.getNumber()) {
             return new Result(false, MessageConstant.ORDER_FULL);
         }
+
 //      3.判断用户是否在重复预约--------------------
         String telephone = (String) map.get("telephone");
-
         List<Member> memberList = memberDao.findAll();
-        System.out.println("OrderServerImpl====memberList====" + memberList);
-
         Member member = memberDao.findByTelephone(telephone);
-        System.out.println("OrderServerImpl====member====" + member);
-
         if(member != null){
             Integer memberId = member.getId();  //会员id
             try {
                 Date order_Date = DateUtils.parseString2Date(orderDate);    //预约日期
-                setmealId = (String) map.get("setmealId");   //套餐id
                 Order order = new Order(memberId, order_Date, Integer.parseInt(setmealId));
                 //根据条件进行查询
                 List<Order> orderList = orderDao.findByCodition(order);
@@ -87,7 +81,7 @@ public class OrderServerImpl implements OrderService {
         }
 //      5.预约成功 更新当日已预约的人数
         Order order = new Order();
-        order.setId(member.getId());    //设置会员id
+        order.setMemberId(member.getId());    //设置会员id
         try {
             order.setOrderDate(DateUtils.parseString2Date(orderDate));
         } catch (Exception e) {
@@ -105,5 +99,24 @@ public class OrderServerImpl implements OrderService {
         orderSetting.setReservations(orderSetting.getReservations() + 1);
         ordersettingDao.updateReservations(orderSetting);   //更新已预约人数
         return new Result(true, MessageConstant.ORDERSETTING_SUCCESS,order.getId());
+    }
+
+    /**
+     * 根据预约id查询预约信息
+     * @param id
+     * @return
+     */
+    @Override
+    public Map findById(Integer id) {
+        Map map = orderDao.findById4Detail(id);
+        if(map != null) {
+            try {
+                //处理日期格式
+                map.put("orderDate", DateUtils.parseDate2String((Date) map.get("orderDate")));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return map;
     }
 }

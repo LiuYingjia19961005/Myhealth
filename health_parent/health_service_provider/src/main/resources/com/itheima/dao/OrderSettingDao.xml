@@ -27,6 +27,6 @@
     </select>
 
     <update id="updateReservations" parameterType="com.itheima.pojo.OrderSetting">
-        UPDATE t_ordersetting SET reservations WHERE orderDate = #{orderDate}
+        UPDATE t_ordersetting SET reservations = #{reservations} WHERE orderDate = #{orderDate}
     </update>
 </mapper>

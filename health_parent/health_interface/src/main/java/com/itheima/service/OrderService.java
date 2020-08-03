@@ -1,6 +1,7 @@
 package com.itheima.service;
 
 import com.itheima.entity.Result;
+import com.itheima.pojo.Order;
 
 import java.util.Map;
 
@@ -11,4 +12,6 @@ import java.util.Map;
 
 public interface OrderService {
     Result order(Map map);
+
+    Map findById(Integer id);
 }

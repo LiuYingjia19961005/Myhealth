@@ -13,6 +13,11 @@
         <result column="setmeal_id" property="setmealId"/>
     </resultMap>
 
+    <!--设置体检预约表order与套餐表的关联关系-->
+    <!--<resultMap id="orderAndStementResultMap" type="com.itheima.pojo.Order" extends="baseResultMap">
+        <association property="id"></association>
+    </resultMap>-->
+
     <!--根据套餐ID查询套餐详情（套餐基本信息、套餐对应的检查组信息、检查组对应的检查项信息）-->
     <select id="findByCodition" parameterType="com.itheima.pojo.Order" resultMap="baseResultMap">
         SELECT * FROM t_order
@@ -40,8 +45,19 @@
 
     <!--添加预约记录-->
     <insert id="add" parameterType="com.itheima.pojo.Order">
-        INSERT INTO t_order (member_id, orderDate, orderType, orderStatus, setmeal_id)
-        VALUES
-        (#{memberId},#{orderDate},#{orderType},#{orderStatus},#{setmealId})
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_order(member_id,orderDate,orderType,orderStatus,setmeal_id)
+        values (#{memberId},#{orderDate},#{orderType},#{orderStatus},#{setmealId})
     </insert>
+
+    <select id="findById4Detail" parameterType="int" resultType="map">
+        select m.name member ,s.name setmeal,o.orderDate orderDate,o.orderType orderType
+        from
+        t_order o,
+        t_member m,
+        t_setmeal s
+        where o.member_id=m.id and o.setmeal_id=s.id and o.id=#{id}
+    </select>
 </mapper>
