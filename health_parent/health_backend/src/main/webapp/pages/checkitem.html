@@ -364,6 +364,17 @@
                     this.findPage();
                 },
 
+                showMessage(res){
+                    if(res == 'Error: Request failed with status code 403'){
+                        //权限不足
+                        this.$message.error('无访问权限');
+                        return;
+                    }else{
+                        this.$message.error('未知错误');
+                        return;
+                    }
+                },
+
                 // 删除开始
                 handleDelete(row) {
                     //console.log(row.id);
@@ -380,6 +391,8 @@
                             }else { //删除失败
                                 this.$message.error(result.data.message);
                             }
+                        }).catch((res)=>{
+                            this.showMessage(res);
                         });
                     }).catch(()=>{  //取消
                         this.$message({

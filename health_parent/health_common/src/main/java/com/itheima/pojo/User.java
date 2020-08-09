@@ -90,4 +90,51 @@ public class User implements Serializable{
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (!id.equals(user.id)) return false;
+        if (!birthday.equals(user.birthday)) return false;
+        if (!gender.equals(user.gender)) return false;
+        if (!username.equals(user.username)) return false;
+        if (!password.equals(user.password)) return false;
+        if (!remark.equals(user.remark)) return false;
+        if (!station.equals(user.station)) return false;
+        if (!telephone.equals(user.telephone)) return false;
+        return roles.equals(user.roles);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + birthday.hashCode();
+        result = 31 * result + gender.hashCode();
+        result = 31 * result + username.hashCode();
+        result = 31 * result + password.hashCode();
+        result = 31 * result + remark.hashCode();
+        result = 31 * result + station.hashCode();
+        result = 31 * result + telephone.hashCode();
+        result = 31 * result + roles.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", birthday=" + birthday +
+                ", gender='" + gender + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", remark='" + remark + '\'' +
+                ", station='" + station + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }

@@ -31,7 +31,7 @@
     <!--<dubbo:registry address="zookeeper://yun.888808888.top:2181"/>-->
     <dubbo:registry address="zookeeper://localhost:2181"/>
     <!--批量扫描-->
-    <dubbo:annotation package="com.itheima.controller" />
+    <dubbo:annotation package="com.itheima" />
     <!--
         超时全局设置 10分钟
         check=false 不检查服务提供方，开发阶段建议设置为false
@@ -46,6 +46,10 @@
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
+    <bean id="springSecurityUserService"
+          class="com.itheima.service.SecurityUserService">
+    </bean>
+
     <import resource="spring-redis.xml"></import>
-    <import resource="classpath:spring-security.xml"></import>
+    <import resource="spring-security.xml"></import>
 </beans>

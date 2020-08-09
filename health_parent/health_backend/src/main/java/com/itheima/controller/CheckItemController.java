@@ -8,6 +8,7 @@ import com.itheima.entity.Result;
 import com.itheima.pojo.CheckItem;
 import com.itheima.service.CheckItemService;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -56,6 +57,7 @@ public class CheckItemController {
      * @param id
      * @return
      */
+    @PreAuthorize("hasAuthority('CHECKITEM_DELETE')")   //使用注解配置权限
     @RequestMapping("/delete")
     public Result delete(@Param(value = "id")Integer id){
         try {
